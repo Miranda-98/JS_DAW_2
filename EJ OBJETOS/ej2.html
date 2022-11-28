@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    2. Crea una clase Productos con las propiedades y métodos del ejercicio 
+    anterior. Además, tendrá un método getInfo que devolverá: 
+    ‘Nombre (categoría): unidades uds x precio € = importe €’.
+     Crea 3 productos diferentes.   
+    -->
+</body>
+<script type="text/javascript">
+    class Productos {
+        constructor(nombre, categoria, unidades, precio) {
+            this.nombre = nombre;
+            this.categoria = categoria;
+            this.unidades = unidades;
+            this.precio = precio;
+        }
+
+
+
+        importe() {
+            let importe = this.unidades * this.precio;  
+            return importe;
+        }
+
+
+        getInfo(){
+            return this.nombre + "categoria ("+this.categoria+")" + " unidades "+this.unidades +" x precio "+ this.precio +"€ ="+ this.importe() +"€"+"</br>";
+        }
+    }
+    let tvSamsung = new Productos('tvSamsung42"', 'Televisores', 4, 345.95);
+    let tvAsus = new Productos('tvAsus42"', 'Televisores', 2, 400.95);
+    let tvAcer = new Productos('tvAcer42"', 'Televisores', 3, 500.95);
+    
+    document.write(tvSamsung.getInfo());
+    document.write(tvAsus.getInfo());
+    document.write(tvAcer.getInfo());
+</script>
+</html>

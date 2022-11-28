@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        2. Haz una función que ordene las notas de un array pasado como parámetro. 
+        Si le pasamos [4,8,3,10,5] debe devolver [3,4,5,8,10]. 
+    -->
+    <script type="text/javascript">
+        let a = [4,8,3,10,5];
+
+        function ordenaArray(a){
+            var aux;
+            for (var i = 1; i < a.length; i++) {
+                if(a[i] < a[i-1]) {
+                    aux = a[i];
+                    a[i] = a[i-1];
+                    a[i-1] = aux;
+                }
+            }
+
+            document.write(a);
+        }
+        
+        ordenaArray(a);
+    </script>
+</body>
+</html>

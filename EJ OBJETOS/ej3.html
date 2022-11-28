@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    3. Crea una clase Televisores que hereda de Productos y que tiene una 
+    nueva propiedad llamada tamaño. El método getInfo mostrará el tamaño 
+    junto al nombre.  
+    -->
+</body>
+<script type="text/javascript">
+    class Productos {
+        constructor(nombre, categoria, unidades, precio) {
+            this.nombre = nombre;
+            this.categoria = categoria;
+            this.unidades = unidades;
+            this.precio = precio;
+        }
+
+
+
+        importe() {
+            let importe = this.unidades * this.precio;
+            return importe;
+        }
+
+
+        getInfo() {
+            return this.nombre + "categoria (" + this.categoria + ")" + " unidades " + this.unidades + " x precio" + this.precio + "€ =" + this.importe() + "€";
+        }
+    }
+    class Televisor extends Productos {
+        constructor(nombre, categoria, unidades, precio, tamaño) {
+            super(nombre, categoria, unidades, precio);
+            this.tamaño = tamaño;
+        }
+
+        getInfo() {
+            return this.tamaño + ' " ' + this.nombre;
+        }
+    }
+
+    let tv = new Televisor('tvSamsung', 'Televisores', 4, 345.95, 40);
+    document.write(tv.getInfo());
+</script>
+
+</html>

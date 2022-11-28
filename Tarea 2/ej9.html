@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ 9</title>
+</head>
+
+<body>
+    <!--
+        9.	Haz una función a la que se le pasa un DNI (ej. 12345678w o 87654321T) y devolverá si es correcto o no.
+        La letra que debe corresponder a un DNI correcto se obtiene dividiendo la parte numérica entre 23 y cogiendo de la cadena 
+        ‘TRWAGMYFPDXBNJZSQVHLCKE’ la letra correspondiente al resto de la división. 
+        Por ejemplo, si el resto es 0 la letra será la T y si es 4 será la G. Prueba la función en la consola con tu DNI.
+    -->
+
+    <input type="text" id="dni" placeholder="ingresa el dni">
+    <button onclick="comprobarDNI()">Presioname..!</button>
+    <div id="mostrarPantalla"></div>
+
+    <script>
+        comprobarDNI = () => {
+            var d = document.getElementById("dni").value;
+            var dni = d.toUpperCase();
+            var letra = dni.substr(0, 8);
+            var num = letra % 23;
+            var letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+            var arrayLetraDNI = letras.charAt(num);
+
+            if (letras.charAt(num) == dni.charAt(8)) {
+                document.getElementById("mostrarPantalla").innerHTML = "el dni es correcto";
+            } else {
+                document.getElementById("mostrarPantalla").innerHTML = "el dni no es correcto";
+            }
+        };
+
+/*
+cubo = (x) => {
+            
+            if (x % 1 == 0){
+                r = Math.pow(x,3);
+                return r;
+            } else {
+                alert("no has introducido un número entero");
+            }
+        };
+
+        function comprobarDNI() {
+            var d = document.getElementById("dni").value;
+            var dni = d.toUpperCase();
+            var letra = dni.substr(0, 8);
+            var num = letra % 23;
+            var letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+            var arrayLetraDNI = letras.charAt(num);
+
+            if (letras.charAt(num) == dni.charAt(8)) {
+                document.getElementById("mostrarPantalla").innerHTML = "el dni es correcto";
+            } else {
+                document.getElementById("mostrarPantalla").innerHTML = "el dni no es correcto";
+            }
+        }*/
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ 6 y EJ 7</title>
+</head>
+
+<body>
+    <!--
+        6.	Haz 3 funciones a las que se le pasa como parámetro un array de notas y devuelve la nota media.
+        Cada una usará un for de una de las 3 formas vistas. 
+        
+        7.	Modifica la función que quieras de calcular la nota media para que devuelva la media con 1 decimal. 
+
+    -->
+    <div id="x"></div>
+    <div id="y"></div>
+    <div id="z"></div>
+    <div id="zz"></div>
+
+    <script>
+        var notas1 = [1.2, 2.4, 3.5, 4.2, 5.9];
+        var notas2 = new Array(2, 3, 4, 5, 6);
+        var notas3 = new Array(5);
+        notas3 = [3, 4, 5, 6, 7];
+
+        function mediaNotas1(notas) {
+            var media = 0;
+            for (let i = 0; i < notas.length; i++) {
+                media = media + notas[i];
+            }
+            media = media / notas.length;
+            document.getElementById("x").innerHTML = "la nota media de " + notas + " es: " + media.toFixed(1) + " for normal";
+
+        }
+
+        function mediaNotas2(notas) {
+            var media = 0;
+            for (const i in notas) {
+                media = media + notas[i];
+            }
+            media = media / notas.length;
+            document.getElementById("y").innerHTML = "la nota media de " + notas + " es: " + media + " for in(trabaja con indices)";
+        }
+
+        function mediaNotas3(notas) {
+            var media = 0;
+            notas.forEach(element => {
+                media = media + element;
+            });
+            media = media / notas.length;
+            document.getElementById("z").innerHTML = "la nota media de " + notas + " es: " + media + " foreach";
+        }
+
+        function mediaNotas4(notas) {
+            var media = 0;
+            for (var x of notas) {
+                media = media + x;
+            }
+            media = media / notas.length;
+            document.getElementById("zz").innerHTML = "la nota media de " + notas + " es: " + media + " for of (trabaja con el valor de cada posicion)";
+        }
+
+
+        mediaNotas1(notas1);
+        mediaNotas2(notas2);
+        mediaNotas3(notas3);
+        mediaNotas4(notas3);
+    </script>
+</body>
+
+</html>

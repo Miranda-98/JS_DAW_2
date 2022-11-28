@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        4. Dado el array de notas (arrayNotas = [5.2, 3.9, 6, 9.75, 7.5, 3]) 
+        devuelve la nota media.
+    -->
+    <script type="text/javascript">
+        var aNotas = [5.2, 3.9, 6, 9.75, 7.5, 3];
+        var suma = 0;
+        var media = 0;
+
+        function notaMedia(a){
+            for (var i = 0; i < a.length; i++){
+                suma = suma + a[i];
+            }
+            
+            media = suma / a.length;
+            console.log(media);
+            return media.toFixed(2);
+        }
+
+        document.write("la media de las notas es: "+notaMedia(aNotas));
+    </script>
+</body>
+</html>

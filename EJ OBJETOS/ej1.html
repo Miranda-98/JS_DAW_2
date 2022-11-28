@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1. Crea un objeto llamado tvSamsung con las propiedades nombre 
+        (TV Samsung 42”), categoria (Televisores), unidades (4), precio (345.95)
+        y con un método llamado importe que devuelve el valor total de las 
+        unidades (nº de unidades * precio).
+    -->
+</body>
+<script type="text/javascript">
+    class Televisor {
+        constructor(nombre, categoria, unidades, precio) {
+            this.nombre = nombre;
+            this.categoria = categoria;
+            this.unidades = unidades;
+            this.precio = precio;
+        }
+
+
+
+        importe() {
+            let importe = this.unidades * this.precio;  
+            return importe;
+        }
+    }
+    let tvSamsung = new Televisor('tvSamsung42"', 'Televisores', 4, 345.95);
+    document.write('el precio es: '+tvSamsung.importe());
+</script>
+
+
+
+</html>

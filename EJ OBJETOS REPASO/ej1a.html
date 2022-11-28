@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript">
+    class informacionEmpresa{
+        constructor (nombre, cif, direccion, telefono) {
+            this.nombre = nombre;
+            this.cif = cif;
+            this.direccion = direccion;
+            this.telefono = telefono;
+        }
+    }
+    
+    
+    class facturaSimplificada extends informacionEmpresa{
+        constructor(nombre, cif, direccion, telefono, fecha, identificador, descripcion, importeConIva, importeSinIVA, importeIva){
+            super(nombre, cif, direccion, telefono);
+            this.fecha = fecha;
+            this.identificador = identificador;
+            this.descripcion = descripcion;
+            this.importeConIva = importeConIva;
+            this.importeSinIVA = importeSinIVA;
+            this.importeIva = importeIva;
+        }
+
+        importe() {
+            let importe = this.importeSinIVA + (this.importeSinIVA * 0.21);  
+            return importe;
+        }
+
+        getInfo() {
+            return "nombre empresa: "+this.nombre+" cif: "+this.cif+" direccion: "+this.direccion+" telefono: "+this.telefono+" fecha: "+this.fecha+" identificador: "+this.identificador+" descripcion: "+this.descripcion+" importe con iva: "+this.importeConIva+" importe sin iva: "+this.importeSinIVA+" importe del iva: "+this.importeIva;
+        }
+    }
+
+    let factura1 = new facturaSimplificada ("empresa1",11111,"madrid",66666,10/10/2010,"cd111111","empresa de costura", 121, 100, 21);
+    let factura2 = new facturaSimplificada ("empresa2",22222,"barcelona",66666,10/10/2010,"cd111112","empresa de agujas", 605, 500, 105);
+
+    document.write(factura1.getInfo());
+    document.write("<br/><br/>");
+    document.write(factura2.getInfo());
+</script>
+<body>
+    
+</body>
+</html>

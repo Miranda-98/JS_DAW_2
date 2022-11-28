@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 
+    1. Crea una clase Dado con las siguientes propiedades:
+• Número de caras del dado (obligatoriamente debe ser mayor que 1).
+• Color del dado.
+• Tipo de dado. Posibilidades: dado de números, de letras, de consonantes, de
+vocales, de sílabas… Para este ejercicio solo vamos a crear dados numéricos.
+• Valores de las caras. Conjunto de valores que toman cada una de sus caras.
+Se obtiene con el método “Calcular el valor de la caras”.
+• Valor activo del dado. Tomará el valor del último lanzamiento del dado. Si el
+dado nunca se ha lanzado tendrá valor 0.
+Esta clase tendrá cuatro métodos:
+1. Calcular el valor de las caras. Se debe hacer siempre tras la creación de
+una instancia. Calcula el conjunto de valores que toman cada una de sus
+caras. Al ser dados de tipo numérico, este conjunto de valores serán los
+números naturales comprendidos entre 1 y el número de caras.
+Ejemplos:
+- En un dado de dos caras, estos valores serán 1 y 2.
+- En un dado de tres caras, estos valores serán 1, 2 y 3.
+- En un dado de siete caras, estos valores serán 1, 2, 3, 4, 5, 6 y 7.
+2. Lanzar Dado. Este método asigna un valor aleatorio de entre los valores de
+las caras a la propiedad “Valor activo del dado”.
+3. Mostrar valor activo del dado. Muestra el valor activo del dado en el último
+lanzamiento.
+4. Mostrar información completa. Este método devuelve toda la información
+del dado incluyendo el valor del último lanzamiento del dado.
+Crea 2 instancias con dados de 6 caras. Lanza ambas y muestra la información
+completa por pantalla (HTML).
+
+ -->
+<script type="text/javascript">
+    class dado {
+        constructor(nCaras, color, vCaras, vActivo) {
+            this.nCaras = nCaras;
+            this.color = color;
+            this.tipoDado = "numerico";
+            this.vCaras = vCaras;
+            this.vActivo = vActivo;
+        }
+
+        valorCaras(n) {
+            let vCaras = [];
+            for (let i = 1; i <= n; i++) {
+                vCaras.push(i);
+            }
+
+            return (vCaras + ", ");
+        }
+
+        lanzarDado() {
+            let n = Math.floor(Math.random() * (6 - 1) + 1);//1-10
+            return n;
+        }
+
+        valorActivo() {
+
+        }
+
+
+
+        mostrarInfoCompleta() {
+            return "el dado tiene " + this.nCaras + "<br/> es de color " + this.color + "<br/> es de tipo " + this.tipoDado + "<br/> valor de sus caras " + this.vCaras + "<br/> y su valor activo es " + this.vActivo;
+        }
+
+    }
+
+    dado.prototype.vCaras = function () {
+        let vCaras = [];
+        for (let i = 1; i <= n; i++) {
+            vCaras.push(i);
+        }
+
+        return (vCaras + ", ");
+    };
+    //    dado.prototype.vActivo() = lanzarDado();
+
+    let d1 = new dado(6, "verde", "1,2,3,4,5,6", 1);
+    let d2 = new dado(6, "rojo", "1,2,3,4,5,6", 2);
+
+    document.write("dado1 -> " + d1.mostrarInfoCompleta());
+    document.write("<br/><br/>valor caras -> " + d1.valorCaras(6));
+
+
+    document.write("<br/><br/><br/>dado2 -> " + d1.mostrarInfoCompleta());
+    document.write("<br/><br/>valor caras -> " + d1.valorCaras(6));
+
+
+    let lanzamientosD1 = [];
+    let lanzamientosD2 = [];
+    let sumaLanzamientos = [];
+    let nLanzamientos = 15;
+
+    for (let i = 0; i < nLanzamientos; i++) {
+        lanzamientosD1.push(d1.lanzarDado());
+        lanzamientosD2.push(d2.lanzarDado());
+        sumaLanzamientos.push(lanzamientosD1[i] + lanzamientosD2[i]);
+    }
+
+
+    document.write("<br/><br/>");
+    document.write("resultado lanzamientos dado 1: " + lanzamientosD1 + "<br/>");
+    document.write("resultado lanzamientos dado 2: " + lanzamientosD2 + "<br/>");
+    document.write("suma lanzamientos: " + sumaLanzamientos + "<br/>");
+    document.write("numero de lanzamientos: " + nLanzamientos + "<br/>");
+    let nuevoConjuntoSuma = sumaLanzamientos;
+    nuevoConjuntoSuma.shift();
+    nuevoConjuntoSuma.pop();
+    document.write("nuevo conjunto suma: " + nuevoConjuntoSuma + "<br/>");
+    let conjuntoSumaMenor = [];
+    for (let i = 0; i < sumaLanzamientos.length; i++) {
+        let nota = sumaLanzamientos[i];
+        if (nota < 7) {
+            conjuntoSumaMenor.push(nota);
+        }
+    }
+    document.write("notas menores a 7: " + conjuntoSumaMenor + "<br/>");
+    let conjuntoSumaTriple = [];
+    for (let i = 0; i < sumaLanzamientos.length; i++) {
+        let nota = sumaLanzamientos[i];
+        conjuntoSumaTriple.push(nota * 3);
+
+    }
+    document.write("notas triplicadas: " + conjuntoSumaTriple + "<br/>");
+    let media = 0;
+    for (let i = 0; i < sumaLanzamientos.length; i++) {
+        media = media + sumaLanzamientos[i];
+    }
+
+    document.write("ordenado de menor a mayor: " + sumaLanzamientos.sort((num1, num2) => num1 - num2) + "<br/>");
+    document.write("ordenado de mayot a menor: " + sumaLanzamientos.sort((num1, num2) => num2 - num1) + "<br/>");
+
+    media = media / sumaLanzamientos.length;
+    document.write("la media del conjunto de valores es: " + media + "<br/>");
+
+    aux = sumaLanzamientos.length;
+    aux2 = Math.round(aux / 2);
+    let mediana = sumaLanzamientos.sort((num1, num2) => num1 - num2).slice(aux2-1, aux2);
+    document.write("la mediana es: " + mediana + "<br/>");
+
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

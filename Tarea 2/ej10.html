@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ 10</title>
+</head>
+
+<body>
+    <!--
+        10.	Realiza un script que determine si la cadena de texto que se le pide al usuario es un palíndromo,
+        es decir, si se lee de la misma forma desde la izquierda y desde la derecha.
+    -->
+    <input type="text" id="palindromo" placeholder="ingresa un texto">
+    <button onclick="comprobarPalindromo()">Presioname..!</button>
+    <div id="mostrarPantalla"></div>
+
+    <script>
+        function comprobarPalindromo() {
+            var texto = document.getElementById("palindromo").value;
+            texto = texto.replace(/\s/g,'');
+            texto = texto.toUpperCase();
+            console.log(texto);
+            var textoArrayO = Array.from(texto);
+            var textoArrayC = Array.from(texto);
+            var bool = false;
+            
+            textoArrayC.reverse();
+            console.log(textoArrayO);
+            console.log(textoArrayC);
+            for (let i = 0; i < textoArrayO.length; i++) {
+                if (textoArrayO[i] == textoArrayC[i]) {
+                    document.getElementById("mostrarPantalla").innerHTML = "el texto es palindromo";
+
+                } else
+                    document.getElementById("mostrarPantalla").innerHTML = "el texto no es palindromo";
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>

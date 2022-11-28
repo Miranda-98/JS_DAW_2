@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- pedir un numero entero mayor que 1 al usuario en prompt o ventana de JS y calcula/mostrar (en el cuerpo de la pagina, en una alerta
+        y por consola)
+        
+        a) si es par o impar
+        b) si es primo o no
+        c) 10 primeros multiplos
+        d) divisores del numero
+        e) numero equivalente en binairo
+    -->
+    <!-- apartado A -->
+    <script type="text/javascript">
+        function apartadoA(){
+            let a = document.getElementById('numero').value;
+            if  (a % 2 == 0 ){
+                alert ("el numero es par");
+                console.log("el numero es par")
+                document.getElementById("mostrarA").outerHTML = "el numero es par";
+            } else {
+                alert ("el numero es impar");
+                console.log("el numero es impar")
+                document.getElementById("mostrarA").outerHTML = "el numero es impar";
+            } 
+        }
+
+    </script>
+    <input type="number" id="numero" min="1" placeholder="introduce un número">
+    <button onclick="apartadoA()">Apartado A</button>
+    <input type="text" disabled id="mostrarA"></br>
+
+    <!-- apartado B -->
+    <script type="text/javascript">
+        function apartadoB(){
+            let b = document.getElementById('numeroB').value;
+            if (b % 2 == 0 || b % 3 == 0 || b % 5 == 0 || b % 7 == 0) {
+                alert("el numero no es primo");
+            } else {
+                alert("el numero es primo");
+            }
+        }
+
+    </script>
+    
+
+    <input type="number" id="numeroB" min="1" placeholder="introduce un número">
+    <button onclick="apartadoB()">Apartado B</button>
+    <input type="text" disabled id="mostrarB" ></br>
+
+    <!-- apartado C -->
+    <script type="text/javascript">
+        function apartadoC(){
+            let c = document.getElementById('numeroC').value;
+            let c1 = "";
+            for (let i = 0; i < 10; i++) {
+                alert( c+" * "+i+" = "+c*i , "");
+                console.log( c+" * "+i+" = "+c*i , "");
+            }
+
+        }
+
+    </script>
+    
+
+    <input type="number" id="numeroC" min="1" placeholder="introduce un número">
+    <button onclick="apartadoC()">Apartado C</button>
+    <div id="mostrarC" ></div>
+
+    <!-- apartado D -->
+    <script type="text/javascript">
+        function apartadoD(){
+            let d = document.getElementById('numeroD').value;
+            for (let i = 1; i <= d; i++) {
+                if (i % d == 0){
+                    console.log("el numero "+i+ " es un divisor de "+d);
+                }
+            }
+
+        }
+
+    </script>
+    
+
+    <input type="number" id="numeroD" min="1" placeholder="introduce un número">
+    <button onclick="apartadoD()">Apartado D</button>
+    <div id="mostrarD" ></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        var aFrutas = ["peras", "manzanas", "kiwis", "platanos", "mandarinas"];
+        //eliminar manzanas
+        aFrutas.splice(1,1);
+        console.log(aFrutas);
+        document.write(aFrutas+"<br/>");
+
+        //añadir naranjas y sandia despues de platano
+        aFrutas.splice(3,0,"naranjas", "sandia");
+        console.log(aFrutas);
+        document.write(aFrutas+"<br/>");
+
+        //cambiar kiwis por cerezas y nisperos
+        aFrutas.splice(1,1,"cerezas", "nisperos");
+        console.log(aFrutas);
+        document.write(aFrutas+"<br/>");
+    </script>
+</head>
+<body>
+    <!--
+    1. Guarda en un array la lista de la compra con Peras, Manzanas, Kiwis, 
+    Plátanos y Mandarinas. Haz los siguiente con splice:
+    •Elimina las manzanas (debe quedar Peras, Kiwis, Plátanos y Mandarinas)
+    •Añade detrás de los Plátanos: Naranjas y Sandía (debe quedar Peras, Kiwis, 
+         Plátanos, Naranjas, Sandía y Mandarinas)
+    •Quita los Kiwis y pon en su lugar Cerezas y Nísperos (debe quedar Peras, 
+        Cerezas, Nísperos, Plátanos, Naranjas, Sandía y Mandarinas)
+
+    -->
+
+</body>
+</html>
