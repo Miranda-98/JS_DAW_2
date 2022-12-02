@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="open2">pepe2</button>
+    <button id="target">pepa</button>
+    <button id="open">pepe</button>
+    <button onclick="abrirNuevo('https://www.w3schools.com/jsref/event_onclick.asp')">Click me</button>
+</body>
+<script>
+
+    function abrirNuevo(url) {
+        
+        // Abrir nuevo ventana
+        var win = window.open(url, "anotherWindow", "width=300,height=150");
+        // Cambiar el foco al nuevo tab (punto opcional)
+        win.focus();
+        win.resizeTo(50,50);
+        win.moveTo(1000,1000);
+        
+    }
+
+
+    $('#open').click(function(){
+
+        var win = window.open("https://www.w3schools.com/jsref/event_onclick.asp", "anotherWindow", "width=300,height=150");
+            win.focus();
+            });
+
+    $( "#target" ).click(function() {
+        alert( "Handler for .click() called." );
+        });
+
+
+    $('#open2').click(function(){
+        var win = window.open('https://aulavirtual3.educa.madrid.org/ies.ciudadescolar.madrid/my/courses.php', '_blank');
+        var win2 = window.open('http://localhost/XAMPP/');
+        })
+</script>
+</html>

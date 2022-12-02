@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function mensajeAutomatico() {
+        const idTiempo = setTimeout(() => alert('mensaje'), 1000);
+        //muestra una alerta cada segundo -> 1000 = 1sg
+
+        let i = 1;
+        const idInterval = setInterval(() => {
+            alert('pepe' + i++);
+            if (i === 5) {
+                clearInterval(idInterval);
+                alert('fin ejecucion');
+            }
+        }, 3000);
+        //muestra un pepe cada 3 segundos hasta que llega a 5, despues se para
+        document.write("hola parce");
+    }
+
+    function mensaje(){
+        alert('parce');
+    }
+
+
+    
+    setTimeout(mensaje(), 3000);
+    //llama a una funcion cada 3 segundo
+</script>
+
+<body>
+
+</body>
+
+</html>
