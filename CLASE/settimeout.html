@@ -8,6 +8,14 @@
     <title>Document</title>
 </head>
 <script>
+    function p(){
+        //let win2 = window.open("", "anotherWindow", "width=100,height=150");
+        let win = window.open("", "anotherWindow", "width=500,height=200");
+        win.focus();
+        console.log('pepe');
+        
+    }
+
     function mensajeAutomatico() {
         const idTiempo = setTimeout(() => alert('mensaje'), 1000);
         //muestra una alerta cada segundo -> 1000 = 1sg
@@ -29,8 +37,9 @@
     }
 
 
-    
-    setTimeout(mensaje(), 3000);
+    //mensajeAutomatico();
+    //const idTimeout = setTimeout(() => p(), 2000);
+    p();
     //llama a una funcion cada 3 segundo
 </script>
 

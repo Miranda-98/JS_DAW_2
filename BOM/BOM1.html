@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript">
+    function popUp(){
+        let win2 = window.open("", "anotherWindow", "width=100px,height=150px");
+        win2.moveTo(700,5);
+        win2.document.write('<h3>Bienvenid@</h3><button id="cerrarPopUp">Cerrar</button>');
+        win2.document.getElementById('cerrarPopUp').addEventListener('click',(event)=>{win2.window.close()});
+    }
+
+    function abirVentana(){
+        // Abrir nuevo ventana
+        let win = window.open("", "anotherWindow", "width=500,height=200");
+        // Asignar un nombre para poder trabajar con la ventana
+        win.name = "ventanaPruebas";
+        console.log(win.name);
+        // Cambiar el foco al nuevo tab (punto opcional)
+        win.focus();
+        // Mover la ventana a una nueva coordenada
+        win.moveTo(100,200);
+
+        const idTimeout = setTimeout(() => popUp(), 2000);
+        
+    }
+
+    function escribir(){
+        let win = window.open('','ventanaPruebas');
+        win.document.write('<h1>Hola!<h1/>');
+    }
+
+    function mover(){
+        let win = window.open('','ventanaPruebas');
+        win.moveBy(-100,300);
+    }
+
+    function cerrar(){
+        let win = window.open('','ventanaPruebas');
+        win.close();
+    }
+
+    
+</script>
+<body>
+    <!-- 1. Crea 4 botones, cada uno debe hacer lo siguiente:
+        1.1.	abre una nueva ventana de dimensiones 500x200px en la posición (100,200)
+        1.2.	escribe en ella (con document.write) un título h1 que diga ‘Hola’
+        1.3.	mueve la ventana 300 px hacia abajo y 100 a la izquierda
+        1.4.	cierra la ventana
+    -->
+    <!-- 
+        2.	Haz que a los 2 segundos de abrir la página se abra un popup con un mensaje de bienvenida.
+        Esta ventana tendrá en su interior un botón Cerrar que permitirá que el usuario la cierre haciendo clic en él. 
+        Tendrá el tamaño justo para visualizar el mensaje y no tendrá barras de scroll, ni de herramientas, ni de dirección… 
+        únicamente el mensaje.
+    -->
+    <button id="boton1" onclick="abirVentana()">Abrir</button>
+    <button id="boton2" onclick="escribir()">Escribir</button>
+    <button id="boton3" onclick="mover()">Mover</button>
+    <button id="boton4" onclick="cerrar()">Cerrar</button>
+</body>
+</html>
