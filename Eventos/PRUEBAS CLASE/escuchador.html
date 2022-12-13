@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript">
+    function abirVentana(){
+        // Abrir nuevo ventana
+        let win = window.open("", "anotherWindow", "width=500,height=200");
+        // Asignar un nombre para poder trabajar con la ventana
+        win.name = "ventanaPruebas";
+        console.log(win.name);
+        // Cambiar el foco al nuevo tab (punto opcional)
+        win.focus();
+        // Mover la ventana a una nueva coordenada
+        win.moveTo(100,200);
+
+        win.addEventListener('resize',()=>alert('ventana redimensionada'));
+
+        
+    }
+
+    function mover(){
+        let win = window.open('','ventanaPruebas');
+        win.addEventListener('resize',()=>alert('ventana redimensionada'));
+    }
+</script>
+<body>
+    <button id="boton1" onclick="abirVentana()">Abrir</button>
+</body>
+</html>
