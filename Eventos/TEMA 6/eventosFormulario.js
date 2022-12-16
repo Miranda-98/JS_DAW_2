@@ -54,4 +54,29 @@ b.addEventListener('click',(event)=>{let x = event.detail; if(x==2){b2.style.col
 document.querySelector('p > input').addEventListener('blur',(event)=>{document.querySelector('p > input').value = document.querySelector('p > input').value.toUpperCase();});
 
 // ej 4
-document.querySelector('p > input').addEventListener('change',(event)=>{document.querySelector('p > input').parentElement.style.color = 'red'});
+document.querySelector('p > input').addEventListener('change',(event)=>
+{document.querySelector('p > input').parentElement.style.color = 'red'});
+
+document.querySelector('p:nth-child(2) > input').addEventListener('change',(event)=>
+{document.querySelector('p:nth-child(2) > input').parentElement.style.color = 'red'});
+
+document.querySelector('p > textarea').addEventListener('change',(event)=>
+{document.querySelector('p > textarea').parentElement.style.color = 'red'});
+
+
+// ej 5
+let ape = document.querySelector('p:nth-child(2) > input');
+let espe = '[!"·$%&/()=?¿]';
+ape.addEventListener('change',(event)=>{
+    
+    console.log(ape.value.includes(espe));
+    if((ape.value).match('[!"·$%&/()=?¿Ññ]') ){
+    ape.value = ' ';
+}});
+
+
+// ej 6
+
+
+// ej 7
+document.querySelector('select > option').addEventListener('click',(event)=>{alert('La nacionalidad selecciona es: ')});
