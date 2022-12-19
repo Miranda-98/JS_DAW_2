@@ -79,4 +79,52 @@ ape.addEventListener('change',(event)=>{
 
 
 // ej 7
-document.querySelector('select > option').addEventListener('click',(event)=>{alert('La nacionalidad selecciona es: ')});
+var select = document.querySelector('select');
+select.addEventListener('change',
+  function(){
+    var selectedOption = this.options[select.selectedIndex];
+    console.log(selectedOption.value + ': ' + selectedOption.text);
+    alert(selectedOption.innerHTML);
+  });
+
+// ej 8 -----------------------------------------------------------
+document.querySelector('input:nth-child(5)')
+let añadir = document.querySelector('p:nth-child(6)')
+let nuevoParrafo = document.createElement('p');
+let valorParrafo1 = document.createTextNode("El elemento ha sido modificado "+ 2 + " veces");
+nuevoParrafo.appendChild(valorParrafo1);
+añadir.appendChild(nuevoParrafo)
+
+// ej 9
+let comentario = document.querySelector('textarea');
+comentario.addEventListener('change',(event)=>{
+    if((comentario.value).match('[wW]') ){
+        console.log('Se encontro una w');
+        alert('Se encontro una letra W');
+    }
+    
+});
+
+// ej 10
+comentario.addEventListener('change',(event)=>{
+        alert(this.getSelection());    
+});
+
+// ej 11
+document.querySelector('#button2').addEventListener('click', function(){
+        let win = window.confirm("ESTAS SEGURO?");
+        if(win == true){
+            console.log("pepe");
+            document.querySelector('p > input').value = ' ';
+            document.querySelector('p:nth-child(2) > input').value = ' ';
+            document.querySelector('p > textarea').value = ' ';
+            document.querySelector('select').selectedOptions = ' ';
+            document.querySelector("input[name=nacido]").value = ' ';
+            document.querySelector('select').value = ' ';
+            document.querySelector("input[name=hm]").remove;
+            document.querySelector('input[type=checkbox]').removeAttr("checked");
+
+        }
+});
+
+// ej 12
