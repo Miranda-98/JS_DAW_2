@@ -16,13 +16,6 @@
         box-sizing: border-box;
       }
 
-      input:{
-        border: solid 1px blue;
-      }
-
-      input:valid{
-        border: solid 1px green;
-      }
 
       input:invalid{
         border: solid 1px red;
@@ -58,7 +51,7 @@
         <!-- Numero binario de 8 digitos -->
         <li>
           <label for="binairo">Introduce un numero binario de 8 dígitos</label>
-          <input type="text" pattern="[0-1]{8}" required>
+          <input type="text" pattern="[0-1]{8}">
         </li>
       </ul>
     </form>
@@ -67,24 +60,24 @@
     <h1>Formulario Login Red Social</h1>
     <form>
       <label for="nombre">Introduce tu nombre</label>
-      <input type="text" pattern="[AZ-az]" minlength="3" maxlength="20" required><br>
+      <input type="text" pattern="[AZ-az]" minlength="3" maxlength="20"><br>
 
       
       <label for="apellido">Introduce tu apellido</label>
-      <input type="text" pattern="[AZ-az]" minlength="4" maxlength="40" required><br>
+      <input type="text" pattern="[AZ-az]" minlength="4" maxlength="40"><br>
 
       
       <label for="usuario">Introduce tu usuario</label>
-      <input type="text" pattern="[AZ-az-09]" minlength="3" maxlength="20" required><br>
+      <input type="text" pattern="[AZ-az-09]" minlength="3" maxlength="20"><br>
 
       <label for="email">Introduce tu email</label>
-      <input type="email" required><br>
+      <input type="email"><br>
 
       <label for="telefono">Introduce tu número de telefono</label>
-      <input type="number" pattern="[09]{9}" required><br>
+      <input type="number" pattern="[09]{9}"><br>
 
       <label for="fechaNacimiento">Intoduce tu fecha de nacimiento</label>
-      <input type="date" required><br>
+      <input type="date"><br>
 
     </form>
   </body>
