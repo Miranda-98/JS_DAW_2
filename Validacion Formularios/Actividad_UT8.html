@@ -23,6 +23,8 @@
     </style>
   </head>
 
+  <script src="complemento.js"></script>
+
   <body>
     <form>
       <h2>Enter your support query</h2>
@@ -74,10 +76,11 @@
       <input type="email"><br>
 
       <label for="telefono">Introduce tu número de telefono</label>
-      <input type="number" pattern="[09]{9}"><br>
+      <input type="text" pattern="[0-9]{9}"><br>
 
       <label for="fechaNacimiento">Intoduce tu fecha de nacimiento</label>
-      <input type="date" min="2005-01-01" max="2023-01-10"><br>
+      <input type="date" id="calendario" min="2005-01-01" ><br>
+
 
       <label for="intereses">Selecciona al menos de las siguientes opciones</label><br>
       <input type="checkbox" name="HTML" checked required><label>HTML</label><br>
@@ -87,28 +90,16 @@
       <input type="checkbox" name="SQL"><label>SQL</label><br>
 
       <button id="añadir">Añadir imagen al final del documento</button>
-      <div id="pepe"></div>
+      
 
       <!-- <label for="img">Sube una imagen</label><br>
       <input id="img" type="file" accept="image/png, .jpeg, .jpg, image/gif">
       <img src="">  -->
       
-      <script type="text/javascript">
-        document.getElementById("añadir").addEventListener("click",crearImagen);
-        function crearImagen(){
-          let img = document.createElement('img');
-          let srcImagen = prompt("Introduce la direccion de la imagen que quieres subir: ");
-          img.src = srcImagen;
-         
-    
-          let añadir = document.getElementById('pepe');
-          añadir.appendChild(img);
-        }
-    
-        //https://i0.wp.com/hotbook.mx/wp-content/uploads/2019/01/fotosparis_portada.jpg?fit=1024%2C682&ssl=1
       
-      </script>
     </form>
+    <div id="pepe">bb</div>
   </body>
+  
 
 </html>
