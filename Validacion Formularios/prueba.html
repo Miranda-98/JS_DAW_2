@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="añadirImagen">Añadir imagen</button>
+    <div id="pepe"></div>
+</body>
+<script type="text/javascript">
+    document.getElementById("añadirImagen").addEventListener("click",añadeImagen);
+
+    function añadeImagen(){
+        let img = document.createElement('img');
+        let srcImagen = prompt("Introduce la direccion de la imagen que quieres subir: ");
+        img.src = srcImagen;
+        
+
+        let añadir = document.getElementById('pepe');
+        añadir.appendChild(img);
+        //https://i0.wp.com/hotbook.mx/wp-content/uploads/2019/01/fotosparis_portada.jpg?fit=1024%2C682&ssl=1
+    }
+</script>
+</html>

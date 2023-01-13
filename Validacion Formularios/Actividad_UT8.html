@@ -23,7 +23,7 @@
     </style>
   </head>
 
-  <script src="complemento.js"></script>
+  
 
   <body>
     <form>
@@ -62,11 +62,11 @@
     <h1>Formulario Login Red Social</h1>
     <form>
       <label for="nombre">Introduce tu nombre</label>
-      <input type="text" pattern="[AZ-az]" minlength="3" maxlength="20"><br>
+      <input type="text" pattern="[A-Za-z]{3,20}"><br>
 
       
       <label for="apellido">Introduce tu apellido</label>
-      <input type="text" pattern="[AZ-az]" minlength="4" maxlength="40"><br>
+      <input type="text" pattern="[A-Za-z]{4,40}" min="4" max="40"><br>
 
       
       <label for="usuario">Introduce tu usuario</label>
@@ -83,23 +83,86 @@
 
 
       <label for="intereses">Selecciona al menos de las siguientes opciones</label><br>
-      <input type="checkbox" name="HTML" checked required><label>HTML</label><br>
-      <input type="checkbox" name="CSS" checked required><label>CSS</label><br>
-      <input type="checkbox" name="JS"><label>JS</label><br>
-      <input type="checkbox" name="JAVA"><label>JAVA</label><br>
-      <input type="checkbox" name="SQL"><label>SQL</label><br>
+      <input type="checkbox" name="x" required><label>HTML</label><br>
+      <input type="checkbox" name="x" required><label>CSS</label><br>
+      <input type="checkbox" name="x"><label>JS</label><br>
+      <input type="checkbox" name="x"><label>JAVA</label><br>
+      <input type="checkbox" name="x"><label>SQL</label><br>
 
-      <button id="añadir">Añadir imagen al final del documento</button>
       
-
+      
       <!-- <label for="img">Sube una imagen</label><br>
       <input id="img" type="file" accept="image/png, .jpeg, .jpg, image/gif">
       <img src="">  -->
       
       
     </form>
-    <div id="pepe">bb</div>
+    <button id="añadirImagen">Añadir imagen al final del documento</button>
+    <button id="mayorEdad">Comprobar mayoria de edad</button>
+    <button id="interesesMinimos" disabled>Al menos 2 opciones</button>
+    <div id="pepe"></div>
+    
   </body>
   
+
+
+
+  <script type="text/javascript">
+      document.getElementById("añadirImagen").addEventListener("click",añadeImagen);
+      document.getElementById("mayorEdad").addEventListener("click",validaEdad);
+      //document.getElementById("interesesMinimos").addEventListener("click",validaIntereses);
+
+      
+        let cantidad = 0;
+        let seleccion = document.getElementsByName('x');
+
+        for (let i=0; i < seleccion.length; i++){
+          seleccion[i].addEventListener( "change", () => {
+          document.getElementById('interesesMinimos').disabled = true;
+          if ( seleccion[i].checked == true ){
+            cantidad ++;
+          }else {
+            cantidad --;
+          }
+            if (cantidad >= 2){document.getElementById('interesesMinimos').disabled = false;}  
+          });
+        }
+
+      
+
+      function validaEdad(){
+        let fechaFormulario = document.getElementById('calendario').value;
+        let fecha = new Date();
+        // let diaActual = fecha.getDate();
+        // let mesActual = fecha.getMonth();
+        // let añoActual = fecha.getFullYear();
+        // //let fechaActual = añoActual+'-'+mesActual+'-'+diaActual;
+        // let fechaActual = String(fecha.getDate()).padStart(2, '0') + '-' + String(fecha.getMonth() + 1).padStart(2, '0') + '-' + fecha.getFullYear();
+        let fechaActual = fecha.toISOString().split('T')[0];
+
+        
+        let fechaInicio = new Date(fechaFormulario).getTime();
+        let fechaFinal = new Date(fechaActual).getTime();
+
+        let diferencia = (fechaFinal - fechaInicio)/(1000*60*60*24);
+        if (diferencia < (365*18)){
+          alert("eres menor de edad");
+        }
+        
+      }
+
+
+      function añadeImagen(){
+        let img = document.createElement('img');
+        let srcImagen = prompt("Introduce la direccion de la imagen que quieres subir: ");
+        img.src = srcImagen;
+        
+
+        let añadir = document.getElementById('pepe');
+        añadir.appendChild(img);
+        //https://i0.wp.com/hotbook.mx/wp-content/uploads/2019/01/fotosparis_portada.jpg?fit=1024%2C682&ssl=1
+      }
+
+  </script>
 
 </html>
