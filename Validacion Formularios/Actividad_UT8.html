@@ -12,6 +12,7 @@
         margin: 0;
       }
 
+
       * {
         box-sizing: border-box;
       }
@@ -31,19 +32,19 @@
       <ul>
         <li>
           <label for="uname">User name:</label>
-          <input type="text" name="uname" id="uname">
+          <input type="text" name="uname" id="uname" min="3" max="20">
         </li>
         <li>
           <label for="email">Email address:</label>
-          <input type="text" name="email" id="email">
+          <input type="email" name="email" id="email">
         </li>
         <li>
           <label for="phone">Phone number:</label>
-          <input type="text" name="phone" id="phone">
+          <input type="number" name="phone" id="phone" pattern="[0-9]{9}" max="15">
         </li>
         <li>
           <label for="comment">Comment:</label>
-          <textarea name="comment" id="comment">
+          <textarea name="comment" id="comment" maxlength="200">
           </textarea>
         </li>
         <li>
@@ -53,7 +54,7 @@
         <!-- Numero binario de 8 digitos -->
         <li>
           <label for="binairo">Introduce un numero binario de 8 dígitos</label>
-          <input type="text" pattern="[0-1]{8}">
+          <input type="text" pattern="[0-1]{8}" required>
         </li>
       </ul>
     </form>
@@ -62,29 +63,29 @@
     <h1>Formulario Login Red Social</h1>
     <form>
       <label for="nombre">Introduce tu nombre</label>
-      <input type="text" pattern="[A-Za-z]{3,20}"><br>
+      <input type="text" pattern="[A-Za-z]{3,20}" required><br>
 
       
       <label for="apellido">Introduce tu apellido</label>
-      <input type="text" pattern="[A-Za-z]{4,40}" min="4" max="40"><br>
+      <input type="text" pattern="[A-Za-z]{4,40}" min="4" max="40" required><br>
 
       
       <label for="usuario">Introduce tu usuario</label>
-      <input type="text" pattern="[AZ-az-09]" minlength="7" maxlength="20"><br>
+      <input type="text" pattern="[AZ-az-09]" minlength="7" maxlength="20" required><br>
 
       <label for="email">Introduce tu email</label>
-      <input type="email"><br>
+      <input type="email" required><br>
 
       <label for="telefono">Introduce tu número de telefono</label>
-      <input type="text" pattern="[0-9]{9}"><br>
+      <input type="text" pattern="[0-9]{9}" required><br>
 
       <label for="fechaNacimiento">Intoduce tu fecha de nacimiento</label>
-      <input type="date" id="calendario" min="2005-01-01" ><br>
+      <input type="date" id="calendario" min="2005-01-01" required><br>
 
 
       <label for="intereses">Selecciona al menos de las siguientes opciones</label><br>
-      <input type="checkbox" name="x" required><label>HTML</label><br>
-      <input type="checkbox" name="x" required><label>CSS</label><br>
+      <input type="checkbox" name="x"><label>HTML</label><br>
+      <input type="checkbox" name="x"><label>CSS</label><br>
       <input type="checkbox" name="x"><label>JS</label><br>
       <input type="checkbox" name="x"><label>JAVA</label><br>
       <input type="checkbox" name="x"><label>SQL</label><br>
@@ -111,6 +112,8 @@
       document.getElementById("añadirImagen").addEventListener("click",añadeImagen);
       document.getElementById("mayorEdad").addEventListener("click",validaEdad);
       //document.getElementById("interesesMinimos").addEventListener("click",validaIntereses);
+      //document.getElementById("comment").addEventListener("onload",()=>{document.getElementById("comment").value = ''})
+      document.getElementById("comment").addEventListener("onload",()=>{document.getElementById("comment").value = ''})
 
       
         let cantidad = 0;
@@ -127,17 +130,12 @@
             if (cantidad >= 2){document.getElementById('interesesMinimos').disabled = false;}  
           });
         }
-
       
 
       function validaEdad(){
         let fechaFormulario = document.getElementById('calendario').value;
         let fecha = new Date();
-        // let diaActual = fecha.getDate();
-        // let mesActual = fecha.getMonth();
-        // let añoActual = fecha.getFullYear();
-        // //let fechaActual = añoActual+'-'+mesActual+'-'+diaActual;
-        // let fechaActual = String(fecha.getDate()).padStart(2, '0') + '-' + String(fecha.getMonth() + 1).padStart(2, '0') + '-' + fecha.getFullYear();
+        
         let fechaActual = fecha.toISOString().split('T')[0];
 
         

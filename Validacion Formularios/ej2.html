@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 2 - Formulario</title>
+    <style>
+        body {
+            background-color: #fff;
+            color: #333;
+            font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+            padding: 1em;
+            margin: 0;
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        input:invalid {
+            border: solid 1px red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Formulario Login Red Social -->
+    <h1>Formulario Login Red Social</h1>
+    <form>
+        <label for="nombre">Introduce tu nombre</label>
+        <input type="text" pattern="[A-Za-z]{3,20}" required><br>
+
+
+        <label for="apellido">Introduce tu apellido</label>
+        <input type="text" pattern="[A-Za-z]{4,40}" min="4" max="40" required><br>
+
+
+        <label for="usuario">Introduce tu usuario</label>
+        <input type="text" pattern="[AZ-az-09]" minlength="7" maxlength="20" required><br>
+
+        <label for="email">Introduce tu email</label>
+        <input type="email" required><br>
+
+        <label for="telefono">Introduce tu número de telefono</label>
+        <input type="text" pattern="[0-9]{9}" required><br>
+
+        <label for="fechaNacimiento">Intoduce tu fecha de nacimiento</label>
+        <input type="date" id="calendario" min="2005-01-01" required><br>
+
+
+        <label for="intereses">Selecciona al menos de las siguientes opciones</label><br>
+        <input type="checkbox" name="x" required><label>HTML</label><br>
+        <input type="checkbox" name="x" required><label>CSS</label><br>
+        <input type="checkbox" name="x"><label>JS</label><br>
+        <input type="checkbox" name="x"><label>JAVA</label><br>
+        <input type="checkbox" name="x"><label>SQL</label><br>
+
+        <button id="interesesMinimos" disabled>Enviar</button>
+    </form>
+    <button id="añadirImagen">Añadir imagen al final del documento</button>
+    <div id="pepe"></div>
+</body>
+<script type="text/javascript">
+    document.getElementById("añadirImagen").addEventListener("click", añadeImagen);
+    document.getElementById("calendario").addEventListener("blur", () => {
+
+        let fechaFormulario = document.getElementById('calendario').value;
+        let fecha = new Date();
+
+        let fechaActual = fecha.toISOString().split('T')[0];
+
+
+        let fechaInicio = new Date(fechaFormulario).getTime();
+        let fechaFinal = new Date(fechaActual).getTime();
+
+        let diferencia = (fechaFinal - fechaInicio) / (1000 * 60 * 60 * 24);
+        if (diferencia < (365 * 18)) {
+            alert("eres menor de edad");
+            document.getElementById('calendario').value = '';
+        }
+
+    });
+
+
+    let cantidad = 0;
+    let seleccion = document.getElementsByName('x');
+
+    for (let i = 0; i < seleccion.length; i++) {
+        seleccion[i].addEventListener("change", () => {
+            document.getElementById('interesesMinimos').disabled = true;
+            if (seleccion[i].checked == true) {
+                cantidad++;
+            } else {
+                cantidad--;
+            }
+            if (cantidad >= 2) { document.getElementById('interesesMinimos').disabled = false; }
+        });
+    }
+
+
+    function validaEdad() {
+        let fechaFormulario = document.getElementById('calendario').value;
+        let fecha = new Date();
+
+        let fechaActual = fecha.toISOString().split('T')[0];
+
+
+        let fechaInicio = new Date(fechaFormulario).getTime();
+        let fechaFinal = new Date(fechaActual).getTime();
+
+        let diferencia = (fechaFinal - fechaInicio) / (1000 * 60 * 60 * 24);
+        if (diferencia < (365 * 18)) {
+            alert("eres menor de edad");
+            document.getElementById('calendario').value = '';
+        }
+
+    }
+
+
+    function añadeImagen() {
+        let img = document.createElement('img');
+        let srcImagen = prompt("Introduce la direccion de la imagen que quieres subir: ");
+        img.src = srcImagen;
+
+
+        let añadir = document.getElementById('pepe');
+        añadir.appendChild(img);
+        //https://i0.wp.com/hotbook.mx/wp-content/uploads/2019/01/fotosparis_portada.jpg?fit=1024%2C682&ssl=1
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej 3 - HTML</title>
+    <style>
+        body {
+          background-color: #fff;
+          color: #333;
+          font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+          padding: 1em;
+          margin: 0;
+        }
+  
+  
+        * {
+          box-sizing: border-box;
+        }
+  
+  
+        input:invalid{
+          border: solid 1px red;
+        }
+      </style>
+</head>
+<script type="text/javascript">
+    function p() {
+        alert("Datos enviados correctamente");
+    }
+</script>
+<body>
+    <form>
+        <h2>Enter your support query</h2>
+        <ul>
+          <li>
+            <label for="uname">User name:</label>
+            <input type="text" name="uname" id="uname" min="3" max="20" required>
+          </li>
+          <li>
+            <label for="email">Email address:</label>
+            <input type="email" name="email" id="email" required>
+          </li>
+          <li>
+            <label for="phone">Phone number:</label>
+            <input type="text" name="phone" id="phone" maxlength="15" required>
+          </li>
+          <li>
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment" maxlength="200" required>
+            </textarea>
+          </li>
+          <li>
+            <button id="enviar" onclick="p()">Submit comment</button>
+          </li>
+
+        </ul>
+      </form>
+</body>
+</html>
