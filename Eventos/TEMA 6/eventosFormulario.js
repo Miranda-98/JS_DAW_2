@@ -76,6 +76,23 @@ ape.addEventListener('change',(event)=>{
 
 
 // ej 6
+function bisiesto(año){
+    if (año % 400 == 0 || año % 100 == 0 || año % 4 == 0){
+        return texto = " Bisiesto";
+    } else {
+        return texto = " No bisiesto";
+    }
+}
+document.querySelector('[min]').addEventListener('change',(event)=>{
+    let h = document.querySelector('p')
+    let k = document.createElement('p')
+    let l = document.createTextNode('El año es')
+    let mensaje = document.createTextNode(bisiesto(document.querySelector('[min]').value));
+
+    k.appendChild(l);
+    k.appendChild(mensaje);
+    h.appendChild(k);
+});
 
 
 // ej 7
@@ -87,15 +104,8 @@ select.addEventListener('change',
     alert(selectedOption.innerHTML);
   });
 
-// ej 8 -----------------------------------------------------------
+// ej 8 
 
-document.querySelector('input:nth-child(5)').addEventListener('click',(event)=>{var zz = event.detail});
-let añadir = document.querySelector('p:nth-child(6)');
-let nuevoParrafo = document.createElement('p');
-
-let valorParrafo1 = document.createTextNode("El elemento ha sido modificado "+ zz + " veces");
-nuevoParrafo.appendChild(valorParrafo1);
-añadir.appendChild(nuevoParrafo)
 
 // ej 9
 let comentario = document.querySelector('textarea');
@@ -166,52 +176,30 @@ document.querySelector('#button1').addEventListener('click', function camposComp
     }
 });
 
-// ej 13 -------
-let nuevoInput= document.createElement("label");
-let inpu1= document.createElement("input");
+// ej 13 
 
-let texto1 = document.createTextNode("Clicks");
-let form1 = document.getElementById('button2');
-let input= document.getElementById("button3");
-
-
-nuevoInput.appendChild(texto1);
-
-inpu1.setAttribute("id", "Clicks");
-inpu1.setAttribute("type", "text");
-
-nuevoInput.appendChild(inpu1);
-nuevoInput.appendChild(document.createElement("br"));
-
-form1.insertBefore(nuevoInput, form1.querySelector("label"));
-
-input.setAttribute("onclick", "CONTADOR(event)");
-function CONTADOR(event) {
-  var x = event.detail;
-  document.getElementById("Clicks").value = x;
-
-}
 
 // ej 14
 document.addEventListener('dblclick', (event) => {
     alert(event.target.innerHTML);});
 
-// ej 15 -------
-let inpu= document.createElement("input");
+// ej 15 
+let input= document.createElement("input");
 
+let input2= document.createElement("label");
 let texto = document.createTextNode("Coordenadas");
-nuevoInput.appendChild(texto);
+input2.appendChild(texto);
 
-inpu.setAttribute("id", "coordenadas");
-inpu.setAttribute("type", "text");
+input.setAttribute("id", "coordenadas");
+input.setAttribute("type", "text");
 
 
-nuevoInput.appendChild(inpu);
-nuevoInput.appendChild(document.createElement("br"));
+input2.appendChild(input);
+input2.appendChild(document.createElement("br"));
 
 let form = document.forms[0];
-form.appendChild(nuevoInput, form.querySelector("label"));
+form.appendChild(input2, form.querySelector("label"));
 
 window.addEventListener('mousemove', (event)=>{
-  document.getElementById("coordenadas").value = (event.screenX + '/' + event.screenY);
+  document.getElementById("coordenadas").value = (event.screenX + '-' + event.screenY);
 })
