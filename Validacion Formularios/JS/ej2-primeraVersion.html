@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ej 2 - Formulario</title>
+    <title>Ej 2 - Version 1</title>
     <style>
         body {
             background-color: #fff;
@@ -36,17 +36,17 @@
 
 
         <label for="apellido">Introduce tu apellido</label>
-        <input type="text" pattern="[A-Za-z]{4,40}" min="4" max="40" required><br>
+        <input type="text"  pattern="[A-Za-z]{4,40}" required><br>
 
 
         <label for="usuario">Introduce tu usuario</label>
-        <input type="text" pattern="[AZ-az-09]" minlength="7" maxlength="20" required><br>
+        <input type="text" id="usuario" pattern="[A-za-z]{5}[0-9]{2}" required><br>
 
         <label for="email">Introduce tu email</label>
-        <input type="email" required><br>
+        <input type="email" id="email"><br>
 
         <label for="telefono">Introduce tu número de telefono</label>
-        <input type="text" pattern="[0-9]{9}" required><br>
+        <input type="text" pattern="[6789]{1}[0-9]{8}" required><br>
 
         <label for="fechaNacimiento">Intoduce tu fecha de nacimiento</label>
         <input type="date" id="calendario" min="2005-01-01" required><br>
@@ -65,14 +65,14 @@
     <div id="pepe"></div>
 </body>
 <script type="text/javascript">
+    document.getElementById('usuario').addEventListener("blur",()=>{
+        document.getElementById('email').value = document.getElementById('usuario').value+"@gmail.com";
+    });
     document.getElementById("añadirImagen").addEventListener("click", añadeImagen);
     document.getElementById("calendario").addEventListener("blur", () => {
-
         let fechaFormulario = document.getElementById('calendario').value;
         let fecha = new Date();
-
         let fechaActual = fecha.toISOString().split('T')[0];
-
 
         let fechaInicio = new Date(fechaFormulario).getTime();
         let fechaFinal = new Date(fechaActual).getTime();
