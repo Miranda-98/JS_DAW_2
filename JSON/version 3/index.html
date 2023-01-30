@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir productor</title>
+    <script src="script.js" defer></script>
+</head>
+<style>
+    .formulario1, .formulario2 {
+        border:  solid black 1px;
+    }
+</style>
+<body>
+    <div class="formulario1">
+        <form>
+            <label>Introduce los datos del producto: </label><br/>
+            <!-- <label>id</label>
+            <input type="text" id="id" pattern="[0-9]"><br/> -->
+            <label>name</label>
+            <input type="text" id="name" pattern="[A-Za-z]{1-10}"><br/>
+            <label>price</label>
+            <input type="number" id="price" pattern="^\d*(\.\d{0,2})?$"><br/>
+            <label>description</label>
+            <input type="text" id="description" pattern="[A-Za-z]{1-250}"><br/>
+            <!-- <label>categoryID</label>
+            <input type="number" id="categoryID" ><br/> -->
+            <select name="categoryID" id="categoryID">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select><br/>
+
+            <button id="boton1" value="enviar">Enviar</button>
+        </form>
+    </div>
+    <br/>
+    <br/>
+    <div class="formulario2">
+        <form>
+            <label>id</label>
+            <input type="text" id="id" pattern="[0-9]"><br/>
+            <label>name</label>
+            <input type="text" id="name" pattern="[AZ-az]"><br/>
+            <label>description</label>
+            <input type="text" id="description" pattern="[AZ-az]"><br/>
+    
+            <input type="submit" id="boton2">
+        </form>
+    </div>
+    
+    <button id="botonObtener">Obtener datos</button>
+</body>
+</html>
