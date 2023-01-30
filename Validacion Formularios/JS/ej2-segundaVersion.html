@@ -20,36 +20,44 @@
             box-sizing: border-box;
         }
 
-
-        input:invalid {
-            border: solid 1px red;
+        input:valid {
+            border: solid green 2px;
         }
+
+        .invalid {
+            border: solid red 2px;
+        }
+
+        /* input:invalid {
+            border: solid red 2px;
+            ;
+        } */
     </style>
 </head>
 
 <body>
     <!-- Formulario Login Red Social -->
     <h1>Formulario Login Red Social</h1>
-    <form>
+    <form novalidate>
         <label for="nombre">Introduce tu nombre</label>
-        <input type="text" id="nombre" pattern="[A-Za-z]{3,20}" required novalidate><br>
+        <input class="" type="text" id="nombre" pattern="[A-Za-z]{3,20}" required><br>
 
 
         <label for="apellido">Introduce tu apellido</label>
-        <input type="text" id="apellido" pattern="[A-Za-z]{4,40}" min="4" max="40" required novalidate ><br>
+        <input type="text" id="apellido" pattern="[A-Za-z]{4,40}" min="4" max="40" required><br>
 
 
         <label for="usuario">Introduce tu usuario</label>
-        <input type="text" id="usuario" pattern="[AZ-az-09]" minlength="7" maxlength="20" required novalidate><br>
+        <input type="text" id="usuario" pattern="[a-zA-Z0-9]{7,40}" required><br>
 
         <label for="email">Introduce tu email</label>
-        <input type="email" id="email" required novalidate><br>
+        <input type="email" id="email" required><br>
 
         <label for="telefono">Introduce tu número de telefono</label>
-        <input type="text" id="telefono" pattern="[0-9]{9}" required novalidate><br>
+        <input type="text" id="telefono" pattern="[0-9]{9}" required><br>
 
         <label for="fechaNacimiento">Intoduce tu fecha de nacimiento</label>
-        <input type="date" id="calendario" min="2005-01-01" required novalidate><br>
+        <input type="date" id="calendario" min="2005-01-01" required><br>
 
 
         <label for="intereses">Selecciona al menos de las siguientes opciones</label><br>
@@ -63,61 +71,18 @@
         <span class="error"></span>
 
 
-        <input type="submit" value="Enviar" onclick="validar()">
-        <button id="interesesMinimos" disabled>Enviar</button>
+
+        <span class="error"></span><br />
+        <button id="validar">Enviar</button>
     </form>
     <button id="añadirImagen">Añadir imagen al final del documento</button>
     <div id="pepe"></div>
 </body>
 <script type="text/javascript">
 
-    /*
-    function validar(){
-        let nombre = document.getElementById('nombre');
-        let apellido = document.getElementById('apellido').value;
-        let usuario = document.getElementById('usuario').value;
-        let email = document.getElementById('email').value;
-        let telefono = document.getElementById('telefono').value;
-        let calendario = document.getElementById('calendario').value;
-        let todoOK = true;
-
-        if(nombre.value == ""){
-            let mensaje = "Campo vacio";
-        }
-
-        this.setCustomValidity(mensaje);
-
-        if(!todoOK){
-            return false;
-        }
-    }
-    */
-
-    let form = document.getElementsByTagName('form')[0];
-    let nombre = document.getElementById('nombre');
-    let nombreError = document.querySelector('#nombre + span.error');
-    let validationMessage = 'PEPE';
-    form.addEventListener('submit',(event)=>{
-        if(!form.checkValidity()){
-            event.preventDefault();
-        }
-        nombreError.textContent = nombre.validationMessage;
-
+    document.getElementById('usuario').addEventListener("blur",()=>{
+        document.getElementById('email').value = document.getElementById('usuario').value+"@gmail.com";
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     document.getElementById("añadirImagen").addEventListener("click", añadeImagen);
     document.getElementById("calendario").addEventListener("blur", () => {
 
@@ -134,11 +99,35 @@
         if (diferencia < (365 * 18)) {
             alert("eres menor de edad");
             document.getElementById('calendario').value = '';
+        } else if (diferencia > (365 * 99)) {
+            alert("tienes más de 99 años");
+            document.getElementById('calendario').value = '';
         }
 
     });
 
-   
+    function comprobarEdad(){
+        let fechaFormulario = document.getElementById('calendario').value;
+        let fecha = new Date();
+
+        let fechaActual = fecha.toISOString().split('T')[0];
+
+
+        let fechaInicio = new Date(fechaFormulario).getTime();
+        let fechaFinal = new Date(fechaActual).getTime();
+
+        let diferencia = (fechaFinal - fechaInicio) / (1000 * 60 * 60 * 24);
+        if (diferencia < (365 * 18)) {
+           // alert("eres menor de edad");
+            return false;
+        } else if(diferencia > (365 * 99)) {
+            //alert("mayor de 99");
+            return false;            
+        } else {
+            return true;
+        }
+    }
+
 
     let cantidad = 0;
     let seleccion = document.getElementsByName('x');
@@ -156,23 +145,6 @@
     }
 
 
-    function validaEdad() {
-        let fechaFormulario = document.getElementById('calendario').value;
-        let fecha = new Date();
-
-        let fechaActual = fecha.toISOString().split('T')[0];
-
-
-        let fechaInicio = new Date(fechaFormulario).getTime();
-        let fechaFinal = new Date(fechaActual).getTime();
-
-        let diferencia = (fechaFinal - fechaInicio) / (1000 * 60 * 60 * 24);
-        if (diferencia < (365 * 18)) {
-            alert("eres menor de edad");
-            document.getElementById('calendario').value = '';
-        }
-
-    }
 
 
     function añadeImagen() {
@@ -183,8 +155,184 @@
 
         let añadir = document.getElementById('pepe');
         añadir.appendChild(img);
+        // url de prueba para comprobar la subida de imagenes
         //https://i0.wp.com/hotbook.mx/wp-content/uploads/2019/01/fotosparis_portada.jpg?fit=1024%2C682&ssl=1
     }
+
+
+    /*
+        Constantes para trabajar con los input del formulario
+    */
+
+    const nombre = document.getElementById('nombre');
+    const apellido = document.getElementById('apellido');
+    const usuario = document.getElementById('usuario');
+    const email = document.getElementById('email');
+    const telefono = document.getElementById('telefono');
+    const fNacimiento = document.getElementById('calendario');
+    const error = document.querySelector('span.error');
+    const botonValidar = document.getElementById('validar');
+
+    /*
+        3.	Añade un botón para enviar el formulario, que valide los campos del formulario utilizando las propiedades 
+        y métodos de la API de validación de formularios que hemos visto (checkValidity, validationMessage, validity...).
+        Ahora todos los mensajes de error serán personales y se mostrarán en la página HTML (justo encima del botón creado). 
+        En el punto 5 se darán los detalles de estos mensajes.
+    */
+    /*
+        se comprueba de arriba a abajo del formulario que todos los campos sean validos, para esto se llama a una funcion que
+        comprueba los datos, se hace uso del 'checkValidity' como se pide en el ejercicio 3
+    */
+    botonValidar.addEventListener('click', (event) => {
+        if (nombre.checkValidity() == false) {
+            erroresNombre();
+        } else if (apellido.checkValidity() == false) {
+            erroresApellido();
+        } else if (usuario.checkValidity() == false) {
+            erroresUsuario();
+        } else if (email.checkValidity() == false) {
+            erroresEmail();
+        } else if (telefono.checkValidity() == false) {
+            errroesTelefono();
+        } else if (fNacimiento.checkValidity() == false) {
+            erroresEdad();
+        }
+        event.preventDefault();
+    })
+
+
+
+    /* 4.	Crea una clase error para que ponga el borde rojo (2 pixeles) en caso de error en la validación.
+            No debe estar en rojo al recargar la página o al cargarla por primera vez. Solo cuando se pulse 
+            el botón anterior y haya un error de validación (Ejemplo: empieza validando el primer campo de nombre, 
+            si no es correcto se pondrá en rojo, si es correcto valida el segundo campo y si no es correcto lo pone 
+            en rojo y así sucesivamente).
+ 
+        5.	En el caso de que la validación no sea correcta se devolverán los siguientes mensajes en el mismo formato 
+        (usa el mismo formato, con negrita y mayúsculas). Se deben mostrar en la página HTML, justo encima del botón.
+         La validación es progresiva, es decir, no se muestra el error del campo correo si antes no ha solucionado errores 
+         previos de campos anteriores.
+    */
+    /*
+        los ejercicios 4 y 5 se desarrollan a la vez
+    */
+
+    /*
+        a.	Error de validación en Nombre: 
+        i.	Si está vacío: “NOMBRE campo obligatorio”.
+        ii.	Si type es distinto de texto (letras): “NOMBRE no puede contener caracteres espaciales ni números”.
+        iii.	Si introduce texto menor de 3 letras o mayor de 20: “NOMBRE debe tener entre 3 y 20 caracteres” (nombre estará 
+                en mayúsculas y negrita, igual en los siguientes).  
+    */
+    function erroresNombre() {
+        if (nombre.validity.valueMissing) {
+            error.innerHTML = "<b>NOMBRE<b/> campo obligatorio";
+            nombre.setAttribute("class", "invalid");
+        } else if (nombre.validity.patternMismatch) {
+            if (nombre.value.length < 3) {
+                error.innerHTML = "<b>Nombre<b/> debe tener al menos 3 caracteres";
+                nombre.setAttribute("class", "invalid");
+            } else if (nombre.value.length > 20) {
+                error.innerHTML = "<b>Nombre<b/> debe tener maximo 20 caracteres";
+                nombre.setAttribute("class", "invalid");
+            }
+        } else {
+            error.innerHTML = "<b>Nombre<b/> solo puede tener caracateres del alfabeto, nada de caracteres especiales";
+        }
+    }
+    /*       
+        b.	Error de validación en Apellidos: 
+            i.	Si está vacío: “APELLIDOS campo obligatorio”.
+            ii.	Si type es distinto de texto (letras): “APELLIDOS no puede contener caracteres espaciales ni números”.
+            iii.	Si introduce texto menor de 4 letras o mayor de 40: “APELLIDOS debe tener entre 4 y 40 caracteres”.  
+    */
+    function erroresApellido() {
+        if (apellido.validity.valueMissing) {
+            error.innerHTML = "<b>APELLIDO<b/> campo obligatorio";
+                apellido.setAttribute("class", "invalid");
+        } else if (apellido.validity.patternMismatch) {
+            if (apellido.value.length < 4) {
+                error.innerHTML = "<b>APELLIDO<b/> debe tener al menos 3 caracteres";
+                    apellido.setAttribute("class", "invalid");
+            } else if (apellido.value.length > 40) {
+                error.innerHTML = "<b>APELLIDO<b/> debe tener maximo 20 caracteres";
+                    apellido.setAttribute("class", "invalid");
+            }
+        } else {
+            error.innerHTML = "<b>APELLIDO<b/> solo puede tener caracateres del alfabeto, nada de caracteres especiales";
+                apellido.setAttribute("class", "invalid");
+        }
+    }
+    /*
+        c.	Error de validación en Usuario: 
+            i.	Si está vacío: “USUARIO campo obligatorio”.
+            ii.	Si introduce menos de 7 caracteres: “USUARIO debe tener al menos 7 caracteres”. 
+    */
+    function erroresUsuario() {
+        if (usuario.validity.valueMissing) {
+            error.innerHTML = "<b>USUARIO<b/> campo obligatorio";
+                usuario.setAttribute("class", "invalid");
+        } else if (usuario.validity.patternMismatch) {
+            if (usuario.value.length < 7) {
+                error.innerHTML = "<b>USUARIO<b/> debe tener al menos 7 caracteres";
+                    usuario.setAttribute("class", "invalid");
+            }
+        }
+    }
+    /*
+        d.	Error de validación en Correo: 
+            i.	Si está vacío: Si está vacío: “CORREO campo obligatorio”.
+            ii.	Si type es distinto de email: “CORREO introducido no es email”.
+            iii.	Si no se coincide con el usuario: “CORREO debe ser usuarioIntroducido@gmail.com”. 
+    */
+    function erroresEmail() {
+        let usuarioValido = usuario.value + "@gmail.com";
+        console.log(usuarioValido);
+        if (email.validity.valueMissing) {
+            error.innerHTML = "<b>CORREO<b/> campo obligatorio";
+                email.setAttribute("class", "invalid");
+        } else if (email.validity.typeMismatch) {
+            error.innerHTML = "<b>CORREO<b/> introducido no es email";
+                email.setAttribute("class", "invalid");
+        } else if(email.value != (usuario.value + "@gmail.com"))  {
+            error.innerHTML = "<b>CORREO<b/> debe ser usuarioIntroducido@gmail.com";
+                email.setAttribute("class", "invalid");
+        }
+    }
+    /*
+        e.	Error de validación en el número de Teléfono:
+            i.	Si está vacío: “TELÉFONO campo obligatorio”.
+            ii.	 Si no comienza por 6, 7, 8 o 9 y la longitud no es 9: “TELÉFONO debe comenzar por 6, 7, 8 o 9 y tener una extensión 
+                fija de 9 cifras”. 
+    */
+   function errroesTelefono() {
+        if(telefono.validity.valueMissing){
+            error.innerHTML = "<b>TELEFONO</b> campo obligatorio";
+            telefono.setAttribute("class", "invalid");
+        } else if (telefono.value[0] != 6 || telefono.value[0] != 7 || telefono.value[0] != 8 || telefono.value[0] != 9 && telefono.value.length < 9) {
+            error.innerHTML = "<b>TELEFONO</b> debe comenzar por 6, 7, 8 o 9 y tener una extension fija de 9 cifras";
+            telefono.setAttribute("class", "invalid");
+        }
+   }
+    /*
+        f.	Error de validación en el fecha de nacimiento:
+            i.	Si está vacío: “FECHA DE NACIMIENTO campo obligatorio”.
+            ii.	Si type es distinto de date: “FECHA DE NACIMIENTO introducida no es una fecha”.
+            iii.	Si es menor de 18 o mayor de 99: “La red social no es adecuada para usuarios menores de 18 o mayores de 99 años”.
+
+            (En esta ocasión los checkbox y la imagen no se consideran obligatorios, por tanto, no se validan)
+    */
+
+    function erroresEdad() {
+        if(fNacimiento.validity.valueMissing) {
+            error.innerHTML = "<b>FECHA DE NACIMIENTO</b> campo obligatorio";
+            fNacimiento.setAttribute("class", "invalid");
+        } else if (comprobarEdad() == false){
+            error.innerHTML = "La red social no es adecuada para usuarios menores de 18 o mayores de 99 años";
+            fNacimiento.setAttribute("class", "invalid");
+        }
+    }
+
 
 </script>
 
