@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "laptop",
-      "price": 1599.99,
+      "price": 1599,
       "description": "HP Laptop",
       "categoryId": 1
     },
@@ -36,18 +36,116 @@
       "id": 5
     },
     {
-      "name": "peto",
-      "price": "200",
-      "description": "pepe",
+      "name": "pepe mi cipote",
+      "price": "100",
+      "description": "asasa",
       "categoryId": "1",
       "id": 6
     },
     {
-      "name": "pepe",
-      "price": "20.30",
-      "description": "pepe",
+      "name": "",
+      "price": "",
+      "description": "",
       "categoryId": "1",
       "id": 7
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 8
+    },
+    {
+      "name": "adasdass",
+      "price": "100.10",
+      "description": "aaaaa",
+      "categoryId": "1",
+      "id": 9
+    },
+    {
+      "name": "arroz",
+      "price": "1000.10",
+      "description": "aaaa",
+      "categoryId": "1",
+      "id": 10
+    },
+    {
+      "name": "aaaaaaaaaaaaaaa",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 11
+    },
+    {
+      "name": "daniel",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 12
+    },
+    {
+      "name": "daniel",
+      "price": "50",
+      "description": "kakakakak",
+      "categoryId": "1",
+      "id": 13
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 14
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 15
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 16
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 17
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 18
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 19
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 20
+    },
+    {
+      "name": "",
+      "price": "",
+      "description": "",
+      "categoryId": "1",
+      "id": 21
     }
   ],
   "categories": [
@@ -60,6 +158,41 @@
       "id": 2,
       "name": "gaming",
       "description": "mouse, monitors, keyboards, etc"
+    },
+    {
+      "name": "",
+      "description": "",
+      "id": 3
+    },
+    {
+      "name": "asdasd",
+      "description": "adasds",
+      "id": 4
+    },
+    {
+      "name": "aaaa",
+      "description": "aaaa",
+      "id": 5
+    },
+    {
+      "name": "",
+      "description": "",
+      "id": 6
+    },
+    {
+      "name": "",
+      "description": "",
+      "id": 7
+    },
+    {
+      "name": "",
+      "description": "",
+      "id": 8
+    },
+    {
+      "name": "",
+      "description": "",
+      "id": 9
     }
   ]
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form id="FormularioProducto">
+            <fieldset>
+                <legend>Introducción de productos</legend>
+                <p>Nombre: </p>
+                <input type="text" name="name" id="name" pattern="[A-Za-z]{*}" required>
+                <p>Precio: </p>
+                <input type="number" name="price" id="price" required>
+                <!-- <p>Descripción: </p>
+                <input type="text" name="description" id="description" required> -->
+                <p>Categoria: </p>
+                <Select>
+                    <option name="Categoría1" value="1">Categoria 1</option>
+                    <option name="Categoría2" value="2">Categoria 2</option>
+                </Select>
+                <br>
+                <br>
+                <input type="submit" name="btnEnviar" value="Enviar">
+                <button id="boton1" name="boton1">Enviar</button>
+            </fieldset>
+        </form>
+    
+        <form id="FormularioCategoria">
+            <fieldset>
+                <legend>Introducción de Categorias</legend>
+    
+                <p>Nombre: </p>
+                <input type="text" name="nameCategoria" id="name" required>
+    
+                <p>Descripción: </p>
+                <input type="text" name="descriptionCategoria" id="description" required>
+                
+                <br>
+                <br>
+                <input type="submit" name="btnEnviarCategoria" value="Enviar">
+                <button id="boton2" name="boton2">Enviar</button>
+
+            </fieldset>
+        </form>
+    
+    </div>
+</body>
+<script>
+    const boton1 = document.getElementById('boton1');
+    const boton2 = document.getElementById('boton2');
+
+
+    // let nombre = document.getElementById('name').value;
+    let nombre = 'monitor';
+
+    const obtenerNombre = new Promise((resolve, reject) => {
+    const name = new XMLHttpRequest();
+    // http://localhost:3000/products?name=monitor
+    // http://localhost:3000/products?name=monitor&price=199.99
+    const url = 'http://localhost:3000/products?name=' + nombre + '&price=' + precio;
+    console.log(url);
+    name.open('GET', url);
+
+    name.send();
+
+    name.onload = function () {
+        if (name.status == 200) {
+
+            console.log('existen productos con el nombre: '+nombre);
+            resolve('ok');
+        } else {
+            // console.log("no existe el nombre -> se ingresa");
+            alert('pepe');
+            reject('no ok');
+        }
+    }
+})
+
+
+
+    // function comprobarNombre(){
+    //     let nombre = document.getElementById('name');
+    //     const name = new XMLHttpRequest();
+    //     name.open('GET', 'http://localhost:3000/products?name='.nombre);
+    //     name.send();
+
+    //     name.onload = function() {
+    //         if(name.status == 200) {
+    //             resolve(name.response);
+    //             resolve('existe el nombre');
+    //         } else {
+    //             reject("no existe");
+    //         }
+    //     }
+
+    // }
+
+    // comprobarNombre();
+
+
+    const suma = new Promise((resolve, reject) => {
+        let a = 2;
+        let b = 3;
+        let resultado = a + b;
+        if (resultado == 5){
+            resolve('ok');
+        } else {
+            reject('no ok');
+        }
+        
+    })
+
+    suma
+    .then(resolve => {
+        console.log('sabe sumar');
+        console.log(resolve);
+    })
+    .catch(error => {
+        console.log('no sabe sumar');
+    })
+
+
+</script>
+</html>

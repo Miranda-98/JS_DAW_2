@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #FormularioProducto{
+            width:  50%;
+            float: left;
+            background-color: rgb(162, 184, 238);
+        }
+
+        #FormularioCategoria{
+            width: 50%;
+            float: right;
+            background-color: rgb(162, 238, 162);
+        }
+        
+        div{
+            width:100%;
+            padding: 5px;
+            margin: auto;
+        }
+        
+
+    </style>
+</head>
+<body>
+  <div>
+    <form id="FormularioProducto">
+        <fieldset>
+            <legend>Introducción de productos</legend>
+            <p>Nombre: </p>
+            <input type="text" name="name" id="name" pattern="[A-Za-z]{*}" required>
+            <p>Precio: </p>
+            <input type="number" name="price" id="price" required>
+            <p>Descripción: </p>
+            <input type="text" name="description" id="description" required>
+            <p>Categoria: </p>
+            <Select>
+                <option name="Categoría1" value="1">Categoria 1</option>
+                <option name="Categoría2" value="2">Categoria 2</option>
+            </Select>
+            <br>
+            <br>
+            <input type="submit" name="btnEnviar" value="Enviar">
+        </fieldset>
+    </form>
+
+    <form id="FormularioCategoria">
+        <fieldset>
+            <legend>Introducción de Categorias</legend>
+
+            <p>Nombre: </p>
+            <input type="text" name="nameCategoria" id="name" required>
+
+            <p>Descripción: </p>
+            <input type="text" name="descriptionCategoria" id="description" required>
+            
+            <br>
+            <br>
+            <input type="submit" name="btnEnviarCategoria" value="Enviar">
+        </fieldset>
+    </form>
+
+</div>
+    <script>
+        let price =  document.querySelector("input[name='price']").value;
+        let price2 = Number.parseInt(price);
+    document.querySelector("input[name='btnEnviar']").addEventListener('click', ()=>{
+        let arrayProducts = {"name": document.querySelector("input[name='name']").value,
+                             "price": parseInt($(price).val(), 10),
+                             "description": document.querySelector("input[name='description']").value,
+                             "categoryId": document.querySelector("input[name='categoryId']").value };
+
+
+    const peticion=new XMLHttpRequest();
+    peticion.open('POST','http://localhost:3000/products');
+
+    peticion.setRequestHeader('Content-Type', 'application/json');
+
+    peticion.onload = () => {
+        const data = JSON.parse(peticion.response);
+        console.log(data);
+    };
+    peticion.send(JSON.stringify(arrayProducts)); 
+    })
+
+    document.querySelector("input[name='btnEnviarCategoria']").addEventListener('click', ()=>{
+
+        let arrayProducts = {
+                             "name": document.querySelector("input[name='nameCategoria']").value,
+                             "description": document.querySelector("input[name='descriptionCategoria']").value,
+                              };
+
+
+    const peticion=new XMLHttpRequest();
+    peticion.open('POST','http://localhost:3000/categories');
+
+    peticion.setRequestHeader('Content-Type', 'application/json');
+
+    peticion.onload = () => {
+        const data = JSON.parse(peticion.response);
+        console.log(data);
+    };
+    peticion.send(JSON.stringify(arrayProducts)); 
+    })
+
+    
+    </script>
+       
+</body>
+</html>

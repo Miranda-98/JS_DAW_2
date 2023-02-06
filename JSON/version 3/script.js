@@ -29,121 +29,141 @@ const boton3 = document.getElementById('botonObtener');
 //     })
 // }
 
-const obtenerNombre2 =  new Promise((resolve, reject) => {
+// const obtenerNombre2 =  new Promise((resolve, reject) => {
+//     const name = new XMLHttpRequest();
+//     const url = 'http://localhost:3000/products?name=laptop';
+//     console.log(url);
+//     name.open('GET', url);
+
+//     name.send();
+
+//     name.onload = function() {
+//         if(name.status == 200) {
+//             console.log('existe el name en obtenerNombre2');
+//             resolve(name.response);
+//         } else {
+//             reject("no existe");
+//         }
+//     }
+// })
+
+let name = document.getElementById('name').value;
+let filtro = '?name=' + name;
+
+let precio = document.getElementById('price').value;
+let filtro2 = '?price=' + precio;
+
+let categoria = document.getElementById('categoryID').value;
+let filtro3 = '?price=' + categoria;
+
+// promesa para comprobar si el nombre del producto existe -> si existe se pasa a comprobar el precio, si no existe se procede a hacer la inserccion
+function llamada() {
+    obtenerNombre;
+}
+const obtenerNombre = new Promise((resolve, reject) => {
     const name = new XMLHttpRequest();
-    const url = 'http://localhost:3000/products?name=laptop';
+    const url = 'http://localhost:3000/products' + filtro;
     console.log(url);
     name.open('GET', url);
-    
+
     name.send();
 
-    name.onload = function() {
-        if(name.status == 200) {
-            console.log('existe el name en obtenerNombre2');
-            resolve(name.response);
-        } else {
-            reject("no existe");
-        }
-    }
-})
+    name.onload = function () {
+        if (name.status == 200) {
 
-let name = 'pepe';
-let filtro = '?name='+name;
-
-
-const obtenerNombre =  new Promise((resolve, reject) => {
-    const name = new XMLHttpRequest();
-    const url = 'http://localhost:3000/products'+filtro;
-    console.log(url);
-    name.open('GET', url);
-    
-    name.send();
-
-    name.onload = function() {
-        if(name.status == 200) {
-            resolve('existe el nombre');
+            console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE1');
             resolve(obtenerPrecio);
         } else {
-            reject("no existe");
+            // console.log("no existe el nombre -> se ingresa");
+            alert('pepe');
+            reject(enviarDatos);
         }
     }
 })
 
-let precio = 100;
-let filtro2 = '?price='+precio;
-
-const obtenerPrecio =  new Promise((resolve, reject) => {
+// promesa para comprobar si el precio del producto existe -> si existe se pasa a comprobar la categoriaID, si no existe se procede a hacer la inserccion
+const obtenerPrecio = new Promise((resolve, reject) => {
     const name = new XMLHttpRequest();
-    const url = 'http://localhost:3000/products'+filtro2;
+    const url = 'http://localhost:3000/products' + filtro2;
     console.log(url);
     name.open('GET', url);
-    
+
     name.send();
 
-    name.onload = function() {
-        if(name.status == 200) {
-            resolve('existe el precio');
-            resolve(obtenerCategoria);
+    name.onload = function () {
+        if (name.status == 200) {
+            // console.log('existe el precio');
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+            resolve(enviarDatos);
         } else {
-            reject("no existe");
+            // console.log("no existe el precio -> se ingresa");
+            alert('pepe2');
+
+            reject(enviarDatos);
         }
     }
 })
 
-let categoria = 1;
-let filtro3 = '?price='+categoria;
-
-const obtenerCategoria =  new Promise((resolve, reject) => {
+// promesa para comprobar si la categoriaID del producto existe -> si existe se muestra una alerta comunicando que no se realizara la inserccion,
+// si no existe se procede a hacer la insercion
+const obtenerCategoria = new Promise((resolve, reject) => {
     const name = new XMLHttpRequest();
-    const url = 'http://localhost:3000/products'+filtro2;
+    const url = 'http://localhost:3000/products' + filtro2;
     console.log(url);
     name.open('GET', url);
-    
+
     name.send();
 
-    name.onload = function() {
-        if(name.status == 200) {
-            resolve('existe la categoria');
-            resolve(name.resolve);
+    name.onload = function () {
+        console.log(name.status);
+        if (name.status == 200) {
+            console.log("gerardo loquita");
+            // console.log('existe la categoria');
+            // console.log(name.resolve);
+            // resolve(name.resolve);
         } else {
-            reject("no existe");
+            // console.log("no existe la categoryID -> se ingresa");
+            // alert('se ingresa');
+            
+
+            reject(enviarDatos);
         }
     }
 })
 
-obtenerNombre2
-.then(resolve => {
-    console.log("pepe primera promesa");
-    console.log(resolve);
-})
-.catch(error => {
-    console.log(error);
-})
+// obtenerNombre
+// .then(resolve => {
+//     console.log("pepe primera promesa");
+//     console.log(resolve);
+// })
+// .catch(error => {
+//     console.log(error);
+// })
 
 obtenerNombre
-.then(resolve => {
-    console.log("primera promesa");
-    return resolve;
-})
-.then(mensaje => {
-    console.log("segunda promesa");
-    console.log(mensaje);
-    return mensaje;
-})
-.then(mensaje2 => {
-    console.log("tercera promesa");
-    console.log(mensaje2);
-    return mensaje2;
-})
-
-.catch(error => {
-    console.log(error);
-})
-
+    .then(resolve => {
+        console.log("primera promesa (nombre)");
+        return resolve;
+    })
+    .then(mensaje => {
+        console.log("segunda promesa (precio)");
+        console.log(mensaje);
+        return mensaje;
+    })
+    .then(mensaje2 => {
+        console.log("tercera promesa (categoryID)");
+        console.log(mensaje2);
+        return mensaje2;
+    })
+    .catch(error => {
+        console.log(error);
+    })
 
 
 
 
+
+// parte inserccion de datos del formulario en la 'BD'
 const obtenerDatos = () => {
     const peticion = new XMLHttpRequest();
     peticion.open('GET', 'http://localhost:3000/products');
@@ -155,6 +175,7 @@ const obtenerDatos = () => {
     };
     peticion.send();
 };
+
 
 const enviarDatos = () => {
 
@@ -182,5 +203,5 @@ const enviarDatos = () => {
 
 
 
-// boton1.addEventListener('click',enviarDatos);
- boton3.addEventListener('click',obtenerDatos);
+boton1.addEventListener('click', llamada());
+boton3.addEventListener('click', obtenerDatos);
