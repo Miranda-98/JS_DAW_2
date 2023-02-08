@@ -8,13 +8,13 @@
 </head>
 <body>
     <div>
-        <form id="FormularioProducto">
+        <form id="form-show">
             <fieldset>
                 <legend>Introducción de productos</legend>
                 <p>Nombre: </p>
-                <input type="text" name="name" id="name" pattern="[A-Za-z]{*}" required>
+                <input type="text" name="name" id="name" pattern="[A-Za-z]{*}" >
                 <p>Precio: </p>
-                <input type="number" name="price" id="price" required>
+                <input type="number" name="price" id="price" >
                 <!-- <p>Descripción: </p>
                 <input type="text" name="description" id="description" required> -->
                 <p>Categoria: </p>
@@ -25,19 +25,26 @@
                 <br>
                 <br>
                 <input type="submit" name="btnEnviar" value="Enviar">
-                <button id="boton1" name="boton1">Enviar</button>
+                <button id="boton1" name="boton1">Enviarr</button>
             </fieldset>
+            <table>
+                <thead>
+                  <tr><th>userId</th><th>Id</th><th>Título</th><th>Post</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
         </form>
+
     
         <form id="FormularioCategoria">
             <fieldset>
                 <legend>Introducción de Categorias</legend>
     
                 <p>Nombre: </p>
-                <input type="text" name="nameCategoria" id="name" required>
+                <input type="text" name="nameCategoria" id="name" >
     
                 <p>Descripción: </p>
-                <input type="text" name="descriptionCategoria" id="description" required>
+                <input type="text" name="descriptionCategoria" id="description" >
                 
                 <br>
                 <br>
@@ -55,32 +62,144 @@
 
 
     // let nombre = document.getElementById('name').value;
-    let nombre = 'monitor';
+    
 
-    const obtenerNombre = new Promise((resolve, reject) => {
-    const name = new XMLHttpRequest();
-    // http://localhost:3000/products?name=monitor
-    // http://localhost:3000/products?name=monitor&price=199.99
-    const url = 'http://localhost:3000/products?name=' + nombre + '&price=' + precio;
-    console.log(url);
-    name.open('GET', url);
+    const SERVER = 'http://localhost:3000/products'
+    const tbody = document.querySelector('tbody')
+    
+    let idUser = 'monitor';
+    let precio = 200;
 
-    name.send();
+    window.addEventListener('load', function() {
+    document.getElementById('form-show').addEventListener('submit', (event) => {
+        event.preventDefault();
+        //let idUser = document.getElementById('name').value
+        
+        getPosts(idUser,precio)
+            .then(function(posts) {
+            tbody.innerHTML = '' // borramos el contenido de la tabla
+            posts.forEach(post => {
+                const newPost = document.createElement('tr')
+                newPost.innerHTML = `
+                    <td>${post.id}</td>
+                    <td>${post.name}</td>
+                    <td>${post.price}</td>
+                    <td>${post.description}</td>
+                    <td>${post.categoryId}</td>`
+                tbody.appendChild(newPost)
+            })
+            //document.getElementById('num-posts').textContent = posts.length
+            })
+            .catch(function(error) {
+            console.error(error)
+            })
+        
+    })
+    })
 
-    name.onload = function () {
-        if (name.status == 200) {
-
-            console.log('existen productos con el nombre: '+nombre);
-            resolve('ok');
+    function getPosts(idUser,precio) {
+    return new Promise(function(resolve, reject) {
+        let peticion = new XMLHttpRequest()
+        peticion.open('GET', SERVER + '?name=' + idUser + '&price=' + precio)
+        console.log('pepe'+SERVER+ '?name=' + idUser + '&price=' + precio);
+        peticion.send()
+        peticion.addEventListener('load', () => {
+        if (peticion.status === 200) {
+            resolve(JSON.parse(peticion.responseText))
         } else {
-            // console.log("no existe el nombre -> se ingresa");
-            alert('pepe');
-            reject('no ok');
+            reject("Error " + this.status + " (" + this.statusText + ") en la petición")
         }
+        })
+        peticion.addEventListener('error', () => reject('Error en la petición HTTP'))
+    })
     }
-})
+
+    boton1.addEventListener('click', getPosts());
+    
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const suma = new Promise((resolve, reject) => {
+    //     let a = 2;
+    //     let b = 3;
+    //     let resultado = a + b;
+    //     if (resultado == 5){
+    //         resolve('ok');
+    //     } else {
+    //         reject('no ok');
+    //     }
+        
+    // })
+
+    // suma
+    // .then(resolve => {
+    //     console.log('sabe sumar');
+    //     console.log(resolve);
+    // })
+    // .catch(error => {
+    //     console.log('no sabe sumar');
+    // })
+
+//     const obtenerNombre = new Promise((resolve, reject) => {
+//     const name = new XMLHttpRequest();
+//     // http://localhost:3000/products?name=monitor
+//     // http://localhost:3000/products?name=monitor&price=199.99
+//     const url = 'http://localhost:3000/products?name=' + nombre + '&price=' + precio;
+//     console.log(url);
+//     name.open('GET', url);
+
+//     name.send();
+
+//     name.onload = function () {
+//         if (name.status == 200) {
+
+//             console.log('existen productos con el nombre: '+nombre+' y precio '+precio);
+//             resolve('ok');
+//         } else {
+//             // console.log("no existe el nombre -> se ingresa");
+//             alert('pepe');
+//             reject('no ok');
+//         }
+//     }
+// })
 
     // function comprobarNombre(){
     //     let nombre = document.getElementById('name');
@@ -100,29 +219,6 @@
     // }
 
     // comprobarNombre();
-
-
-    const suma = new Promise((resolve, reject) => {
-        let a = 2;
-        let b = 3;
-        let resultado = a + b;
-        if (resultado == 5){
-            resolve('ok');
-        } else {
-            reject('no ok');
-        }
-        
-    })
-
-    suma
-    .then(resolve => {
-        console.log('sabe sumar');
-        console.log(resolve);
-    })
-    .catch(error => {
-        console.log('no sabe sumar');
-    })
-
 
 </script>
 </html>
